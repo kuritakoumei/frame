@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>カルテ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="カルテっぽい？">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+<header>
+        <div class="top">
+            <div class="content-kanzya">
+                <p>患者ID:${patient.getPat_id()}&nbsp;<br>
+                    患者名:${patient.getName()}</p>
+            </div>
+            <div class="content-sezyutu">
+                <p>施術日:${emr.getTreat_date()}&nbsp;<br>
+                    施術時間:${emr.getTreat_time()}&nbsp;</p>
+            </div>
+        </div>
+</header>
+
+<div id="contents">
+
+    <main class="column">
+
+        <div class="main-area">
+            施術内容：${emr.getTreat_detail()}<br>
+            院長記述：${emr.getDescription()}<br>
+        </div>
+        <!--/.main-area-->
+
+        <div class="sub-area">
+            事前問診<br>
+            ◎調子の悪い場所はどこですか？<br>
+            ${mediQue.getNot_feeling()}<br>
+            ◎いつからですか？<br>
+            ${mediQue.getSince_when()}<br>
+            ◎どのような症状ですか？<br>
+            ${mediQue.getSymptoms()}<br>
+            ◎思い当たる原因はありますか？<br>
+            ${mediQue.getCause()}<br>
+            ◎その他、気になることがあればお書きください。<br>
+            ${mediQue.getOther()}<br>
+            <br>
+        </div>
+        <!--/.sub-area-->
+
+        <div class="side-area">
+            画像名　：${emr.getKarute_imagepath()}<br>
+            <img id="image" src="data:image/png;base64, ${base64Image}" alt="Image">
+        </div>
+        <!--/.side-area-->
+
+    </main>
+
+
+</div>
+<!--/#contents-->
+
+<footer>
+    <div id="bottom">
+        <div id="centered-element">
+            <form action="/EmrSystem3/EmrRegisterExecuteServlet2" method="post">
+                <input type="submit" value="登録を確定する">
+                <input type="button" value="戻る" onClick='history.back();'>
+            </form>
+        </div>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>
